@@ -1,0 +1,13 @@
+-- Create the Products Table
+CREATE TABLE products (
+	product_id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    product_category VARCHAR(50) NOT NULL,
+    product_description TEXT NOT NULL,
+    initial_price DECIMAL(13,2) UNSIGNED NOT NULL,
+    selling_price DECIMAL(13,2) UNSIGNED NOT NULL,
+    product_image VARCHAR(255) NOT NULL,
+    vendor_id INT NOT NULL,
+    product_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    product_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
