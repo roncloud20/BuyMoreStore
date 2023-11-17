@@ -19,29 +19,13 @@
             return $data;
         }
 
-        // function priceValidate($data, $errormsg) {
-        //     if(preg_match('/^[1-9]\d$/', $data )) {
-        //         $errormsg = "";
-        //     } else {
-        //         $errormsg = "Invalid price value";
-        //     }
-        // }
-
+        // Capturing the input parameters
         $product_name = sanitizeInput($_POST['product_name']);
         $product_category = sanitizeInput($_POST['product_category']);
         $initial_price = sanitizeInput($_POST['initial_price']);
         $selling_price = sanitizeInput($_POST['selling_price']);
         $product_description = sanitizeInput($_POST['product_description']);
-
-        // $initial_price = $initial_price;
-        // $selling_price = priceValidate($selling_price;
-
-        // if ($initial_price <= $selling_price) {
-        //     $iperr = "Initial price is greater than Selling price";
-        //     $sperr = "Selling price is less than Initial price";
-        // } else {
-        //     $iperr = $sperr = ""
-        // }
+        $product_image = $_FILES['product_image'];
 
         if ($selling_price >= $initial_price) {
             $iperr = "Initial price is less than Selling price";
@@ -50,15 +34,45 @@
             $iperr = $sperr = "";
         }
 
+        // Validate Image 
+        $uploadDirectory = "uploads/";
+        $maxFileSize = 3 * 1024 * 1024;
+        if ($product_image['size'] <= $maxFileSize) {
+            if(isset($product_image) && $product_image['error'] === 0) {
+                $tempFilePath = $product_image['tmp_name'];
+    
+                $imageInfo = getimagesize($tempFilePath);
+                
+                if($imageInfo !== false) {
+                    $newFileName = uniqid('product_') . "." . pathinfo($product_image['name'], PATHINFO_EXTENSION);
+    
+                    $targetFilePath = $uploadDirectory . $newFileName;
+    
+                    if(move_uploaded_file($tempFilePath, $targetFilePath)) {
+                        echo "Successfully uploaded as " . $newFileName;
+                    } else {
+                        $pierr = 'Upload failed'; 
+                    }
+                } else {
+                    $pierr = "No image found";
+                }
+            } else {
+                $pierr = "No image found";
+            }
+    
+        } else {
+            $pierr = "Image Size is bigger than 3mb";
+        }
+        
     }
 ?>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <h1>Create a Product</h1>
-    <input type="file" id="image" name="product_image" onchange="previewImage()" required/> <br/>
+    <input type="file" id="image" name="product_image" onchange="previewImage()"/> <br/>
     <span><?php echo $pierr; ?></span>
     <img src="" id="imagePreview" style="max-width: 300px; max-height: 300px;"/>
-    <input type="text" name="product_name" placeholder="Enter Product Name" required/>
+    <input type="text" name="product_name" placeholder="Enter Product Name"/>
     <span><?php echo $pnerr; ?></span>
     <select name="product_category" required>
         <option value="Home Appliances">Home Appliances</option>
@@ -67,11 +81,11 @@
         <option value="Office Equiptment">Office Equiptment</option>
         <option value="Groceries">Groceries</option>
     </select>
-    <input type="text" name="initial_price" placeholder="Enter Initial Price" required>
+    <input type="number" name="initial_price" placeholder="Enter Initial Price">
     <span><?php echo $iperr; ?></span>
-    <input type="text" name="selling_price" placeholder="Enter Selling Price" required>
+    <input type="number" name="selling_price" placeholder="Enter Selling Price">
     <span><?php echo $sperr; ?></span>
-    <textarea name="product_description" placeholder="Enter Product Description" required width="100%"></textarea>
+    <textarea name="product_description" placeholder="Enter Product Description" width="100%"></textarea>
     <span><?php echo $pderr; ?></span>
 
     <input type="submit" value="Create Product">
