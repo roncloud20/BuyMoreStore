@@ -1,5 +1,5 @@
 <?php
-    // Creating the page title and adding the header page 
+    // Creating the page title and adding the header page  Hello
     $pagetitle = "Create Product";
     require_once "assets/header.php";
 
