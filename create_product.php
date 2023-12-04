@@ -88,11 +88,21 @@
     <input type="text" name="product_name" placeholder="Enter Product Name"/>
     <span><?php echo $pnerr; ?></span>
     <select name="product_category" required>
-        <option value="Home Appliances">Home Appliances</option>
-        <option value="Kitchen Appliances">Kitchen Appliances</option>
-        <option value="Electronic Gadgets" selected>Electronic Gadgets</option>
-        <option value="Office Equiptment">Office Equiptment</option>
-        <option value="Groceries">Groceries</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Home and Furniture">Home and Furniture</option>
+        <option value="Beauty and Personal Care">Beauty and Personal Care</option>
+        <option value="Books and Stationery">Books and Stationery</option>
+        <option value="Sports and Outdoors">Sports and Outdoors</option>
+        <option value="Toys and Games">Toys and Games</option>
+        <option value="Health and Wellness">Health and Wellness</option>
+        <option value="Automotive">Automotive</option>
+        <option value="Jewelry and Watches">Jewelry and Watches</option>
+        <option value="Music and Instruments">Music and Instruments</option>
+        <option value="Art and Craft Supplies">Art and Craft Supplies</option>
+        <option value="Pet Supplies">Pet Supplies</option>
+        <option value="Grocery and Gourmet">Grocery and Gourmet</option>
+        <option value="Travel and Luggage">Travel and Luggage</option>
     </select>
     <input type="number" name="initial_price" placeholder="Enter Initial Price">
     <span><?php echo $iperr; ?></span>

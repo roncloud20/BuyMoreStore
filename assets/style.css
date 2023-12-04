@@ -1,3 +1,8 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -68,3 +73,48 @@ form {
 span {
     color: red;
 }
+
+/* Products */
+/* .products {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.card > img {
+    width:  300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.price {
+    color: grey;
+    font-size: 16px;
+}
+.init {
+    text-decoration: line-through;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+} */
